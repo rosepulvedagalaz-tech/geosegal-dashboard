@@ -1,0 +1,14 @@
+{
+ "kpis":{
+  "disponibilidad":89,
+  "cumplimiento":97,
+  "revision":96
+ },
+
+ "meses":[
+ "Ene","Feb","Mar","Abr","May","Jun",
+ "Jul","Ago","Sep","Oct","Nov","Dic"
+ ],
+
+ "fallas":[4,3,5,2,3,4,2,3,1,2,3,2]
+}
