@@ -1,1 +1,30 @@
+body{
+font-family: Arial;
+margin:40px;
+background:#f5f5f5;
+}
+
+h1{
+text-align:center;
+}
+
+.kpi-container{
+display:flex;
+justify-content:space-around;
+margin-bottom:40px;
+}
+
+.kpi{
+background:white;
+padding:20px;
+border-radius:10px;
+width:200px;
+text-align:center;
+box-shadow:0 2px 5px rgba(0,0,0,0.2);
+}
+
+.kpi p{
+font-size:28px;
+font-weight:bold;
+}
 
