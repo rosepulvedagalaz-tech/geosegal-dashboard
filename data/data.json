@@ -3,6 +3,12 @@
   "disponibilidad":89,
   "cumplimiento":97,
   "revision":96
+  "flota":{
+ "total":28,
+ "operativos":25,
+ "mantencion":2,
+ "fuera_servicio":1
+}
  },
 
  "meses":[
