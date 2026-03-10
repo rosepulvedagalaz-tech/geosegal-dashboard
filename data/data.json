@@ -1,20 +1,33 @@
 {
- "kpis":{
-  "disponibilidad":89,
-  "cumplimiento":97,
-  "revision":96
+  "kpis":{
+    "disponibilidad":89,
+    "cumplimiento":97,
+    "revision":96
+  },
+
+  "operacion":{
+  "puntualidad":96,
+  "fallas_promedio":2.3,
+  "tiempo_reparacion":5.4
+},
+
   "flota":{
- "total":28,
- "operativos":25,
- "mantencion":2,
- "fuera_servicio":1
-}
- },
+    "total":28,
+    "operativos":25,
+    "mantencion":2,
+    "fuera_servicio":1
+  },
 
- "meses":[
- "Ene","Feb","Mar","Abr","May","Jun",
- "Jul","Ago","Sep","Oct","Nov","Dic"
- ],
+  "meses":[
+    "Ene","Feb","Mar","Abr","May","Jun",
+    "Jul","Ago","Sep","Oct","Nov","Dic"
+  ],
 
- "fallas":[4,3,5,2,3,4,2,3,1,2,3,2]
+  "fallas":[4,3,5,2,3,4,2,3,1,2,3,2],
+
+
+  "cumplimiento_mensual":[95,96,94,97,98,97,96,97,98,99,97,98],
+
+"disponibilidad_mensual":[87,88,89,90,89,88,90,91,90,89,90,92]
 }
+
