@@ -17,13 +17,34 @@
 <a href="buses.html">Flota</a>
 </nav>
 
-<h1>Buscar Bus</h1>
+<h1>Flota de Buses</h1>
+
+<h2>Buscar por patente</h2>
 
 <input type="text" id="buscador" placeholder="Ingresar patente">
-
 <button onclick="buscarBus()">Buscar</button>
 
 <div id="resultado"></div>
+
+<h2>Listado de buses</h2>
+
+<table id="tablaBuses">
+
+<thead>
+
+<tr>
+<th>Patente</th>
+<th>Marca</th>
+<th>Modelo</th>
+<th>Año</th>
+<th>Ver</th>
+</tr>
+
+</thead>
+
+<tbody></tbody>
+
+</table>
 
 <script src="buses.js"></script>
 
