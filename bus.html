@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<title>Ficha Bus</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<nav class="menu">
+<a href="index.html">Dashboard</a>
+<a href="buses.html">Flota</a>
+</nav>
+
+<h1>Ficha del Bus</h1>
+
+<div id="busInfo"></div>
+
+<script>
+
+async function cargarBus(){
+
+const params = new URLSearchParams(window.location.search)
+const patente = params.get("patente")
+
+const response = await fetch("data/buses.json")
+const data = await response.json()
+
+const bus = data.buses.find(b => b.patente === patente)
+
+document.getElementById("busInfo").innerHTML = `
+
+<h2>${bus.patente}</h2>
+
+Marca: ${bus.marca} <br>
+Modelo: ${bus.modelo} <br>
+Año: ${bus.anio} <br>
+Kilometraje: ${bus.kilometraje} km <br>
+Asientos: ${bus.asientos} <br>
+Empresa: ${bus.empresa} <br>
+
+<br>
+
+Revisión técnica: ${bus.revision_tecnica} <br>
+Permiso circulación: ${bus.permiso_circulacion} <br>
+Certificación minera: ${bus.certificacion_minera} <br>
+
+<br>
+
+Última mantención: ${bus.ultima_mantencion} <br>
+Último cambio aceite: ${bus.ultimo_cambio_aceite}
+
+`
+
+}
+
+cargarBus()
+
+</script>
+
+</body>
+</html>
