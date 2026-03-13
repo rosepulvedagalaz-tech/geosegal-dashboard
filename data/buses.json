@@ -1,100 +1,100 @@
 {
-"buses":[
+ "buses":[
 
 {
-"patente":"ABCD11",
+"numero_bus":104,
+"patente":"BVBB29",
 "marca":"Mercedes",
 "modelo":"Marcopolo",
 "anio":2018,
-"kilometraje":420000,
 "asientos":44,
-"empresa":"Minera Escondida",
 
-"estado":"Operativo",
+"motor":"457916U0906426",
+"chasis":"9BM6340118B574014",
 
-"revision_tecnica":"2026-04-10",
+"revision_tecnica":"2026-10-10",
 "permiso_circulacion":"2026-03-31",
-"certificacion_minera":"2026-03-25",
+"seguro":"2027-12-01",
+"cartola":"2025-08-20",
 
-"ultima_mantencion":"2026-01-10",
-"ultimo_cambio_aceite":"2026-02-01"
+"propietario":"Empresa Transportes"
 },
 
 {
-"patente":"EFGH22",
-"marca":"Scania",
-"modelo":"Irizar",
-"anio":2020,
-"kilometraje":310000,
-"asientos":42,
-"empresa":"Codelco",
-
-"estado":"Operativo",
-
-"revision_tecnica":"2026-05-20",
-"permiso_circulacion":"2026-03-31",
-"certificacion_minera":"2026-06-10",
-
-"ultima_mantencion":"2026-02-15",
-"ultimo_cambio_aceite":"2026-02-20"
-},
-
-{
-"patente":"JKLM33",
-"marca":"Volvo",
-"modelo":"Comil",
-"anio":2017,
-"kilometraje":500000,
-"asientos":46,
-"empresa":"BHP",
-
-"estado":"Mantencion",
-
-"revision_tecnica":"2026-02-10",
-"permiso_circulacion":"2026-03-31",
-"certificacion_minera":"2026-02-25",
-
-"ultima_mantencion":"2026-02-28",
-"ultimo_cambio_aceite":"2026-01-15"
-},
-
-{
-"patente":"RTYU44",
+"numero_bus":106,
+"patente":"FGGZ36",
 "marca":"Mercedes",
 "modelo":"Irizar",
 "anio":2019,
-"kilometraje":390000,
 "asientos":44,
-"empresa":"Anglo American",
 
-"estado":"Operativo",
+"motor":"924919U0996918",
+"chasis":"9BM384078CB852606",
 
-"revision_tecnica":"2026-06-01",
+"revision_tecnica":"2026-04-10",
 "permiso_circulacion":"2026-03-31",
-"certificacion_minera":"2026-05-10",
+"seguro":"2026-09-15",
+"cartola":"2026-07-10",
 
-"ultima_mantencion":"2026-02-05",
-"ultimo_cambio_aceite":"2026-02-18"
+"propietario":"Empresa Transportes"
 },
 
 {
-"patente":"ZXCV55",
-"marca":"Scania",
-"modelo":"Marcopolo",
-"anio":2021,
-"kilometraje":210000,
-"asientos":42,
-"empresa":"Collahuasi",
+"numero_bus":107,
+"patente":"FFZX18",
+"marca":"Mercedes",
+"modelo":"Irizar",
+"anio":2020,
+"asientos":46,
 
-"estado":"Operativo",
+"motor":"924919U0996067",
+"chasis":"9BM384078CB851870",
 
-"revision_tecnica":"2026-03-18",
+"revision_tecnica":"2026-04-01",
 "permiso_circulacion":"2026-03-31",
-"certificacion_minera":"2026-04-12",
+"seguro":"2026-05-20",
+"cartola":"2026-04-10",
 
-"ultima_mantencion":"2026-03-01",
-"ultimo_cambio_aceite":"2026-02-28"
+"propietario":"Empresa Transportes"
+},
+
+{
+"numero_bus":108,
+"patente":"FXZY13",
+"marca":"Scania",
+"modelo":"Comil",
+"anio":2017,
+"asientos":42,
+
+"motor":"8217198",
+"chasis":"9BSK6X200D3831495",
+
+"revision_tecnica":"2026-02-01",
+"permiso_circulacion":"2026-03-31",
+"seguro":"2025-06-15",
+"cartola":"2025-03-05",
+
+"propietario":"Empresa Transportes"
+},
+
+{
+"numero_bus":116,
+"patente":"BZXT22",
+"marca":"Mercedes",
+"modelo":"Marcopolo",
+"anio":2016,
+"asientos":45,
+
+"motor":"926926U0784147",
+"chasis":"9BM3821769B604065",
+
+"revision_tecnica":"2026-11-15",
+"permiso_circulacion":"2026-03-31",
+"seguro":"2026-08-01",
+"cartola":"2026-04-10",
+
+"propietario":"Empresa Transportes"
 }
 
-]
+ ]
 }

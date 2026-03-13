@@ -35,25 +35,46 @@ const bus = data.buses.find(b => b.patente === patente)
 
 document.getElementById("busInfo").innerHTML = `
 
+<div class="card">
+
 <h2>${bus.patente}</h2>
 
+<div class="bus-grid">
+
+<div>
+
+<h3>Información del Bus</h3>
+
+Número Bus: ${bus.numero_bus} <br>
 Marca: ${bus.marca} <br>
 Modelo: ${bus.modelo} <br>
 Año: ${bus.anio} <br>
-Kilometraje: ${bus.kilometraje} km <br>
 Asientos: ${bus.asientos} <br>
-Empresa: ${bus.empresa} <br>
+Propietario: ${bus.propietario}
+
+</div>
+
+<div>
+
+<h3>Datos Técnicos</h3>
+
+Motor: ${bus.motor} <br>
+Chasis: ${bus.chasis}
+
+</div>
+
+</div>
 
 <br>
 
-Revisión técnica: ${bus.revision_tecnica} <br>
-Permiso circulación: ${bus.permiso_circulacion} <br>
-Certificación minera: ${bus.certificacion_minera} <br>
+<h3>Documentación</h3>
 
-<br>
+Revisión Técnica: ${bus.revision_tecnica} <br>
+Permiso Circulación: ${bus.permiso_circulacion} <br>
+Seguro: ${bus.seguro} <br>
+Cartola: ${bus.cartola}
 
-Última mantención: ${bus.ultima_mantencion} <br>
-Último cambio aceite: ${bus.ultimo_cambio_aceite}
+</div>
 
 `
 

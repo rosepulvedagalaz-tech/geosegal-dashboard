@@ -1,11 +1,39 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
 <meta charset="UTF-8">
-<title>Dashboard Operacional - Geosegal</title>
-
+<title>Dashboard Flota</title>
 
 <link rel="stylesheet" href="style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<h2>Estado de Flota</h2>
+
+<div class="flota-panel">
+
+<div class="flota-card total">
+<h3>Total Buses</h3>
+<p id="flota_total"></p>
+</div>
+
+<div class="flota-card operativo">
+<h3>Operativos</h3>
+<p id="flota_operativos"></p>
+</div>
+
+<div class="flota-card mantencion">
+<h3>Mantención</h3>
+<p id="flota_mantencion"></p>
+</div>
+
+<div class="flota-card fuera">
+<h3>Fuera Servicio</h3>
+<p id="flota_fuera"></p>
+</div>
+
+</div>
 
 </head>
 
@@ -16,111 +44,57 @@
 <a href="buses.html">Flota</a>
 </nav>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<h1>Panel Operacional</h1>
 
+<h2>Indicadores de Servicio</h2>
 
-</head>
+<div class="kpis">
 
-<body>
-
-<h1>Dashboard Operacional Geosegal</h1>
-
-<h2>KPIs Operacionales</h2>
-
-<div class="kpi-container">
-
-<div class="kpi-card">
-<h3>Disponibilidad de Flota</h3>
-<p id="disponibilidad">-</p>
+<div class="kpi">
+<h3>Disponibilidad</h3>
+<p id="disponibilidad"></p>
 </div>
 
-<div class="kpi-card">
-<h3>Cumplimiento de Servicio</h3>
-<p id="cumplimiento">-</p>
+<div class="kpi">
+<h3>Cumplimiento</h3>
+<p id="cumplimiento"></p>
 </div>
 
-<div class="kpi-card">
-<h3>Revisión Técnica al Día</h3>
-<p id="revision">-</p>
+<div class="kpi">
+<h3>Revisión Flota</h3>
+<p id="revision"></p>
 </div>
 
 </div>
 
+<h2>Operación</h2>
 
-<h2>Estado de la Flota</h2>
+<div class="kpis">
 
-<div class="kpi-container">
-
-<div class="kpi-card">
-<h3>Flota Total</h3>
-<p id="flotaTotal">-</p>
+<div class="kpi">
+<h3>Puntualidad</h3>
+<p id="puntualidad"></p>
 </div>
 
-<div class="kpi-card">
-<h3>Buses Operativos</h3>
-<p id="flotaOperativa">-</p>
+<div class="kpi">
+<h3>Fallas Promedio</h3>
+<p id="fallas_promedio"></p>
 </div>
 
-<div class="kpi-card">
-<h3>En Mantención</h3>
-<p id="flotaMantencion">-</p>
-</div>
-
-<div class="kpi-card">
-<h3>Fuera de Servicio</h3>
-<p id="flotaFuera">-</p>
+<div class="kpi">
+<h3>Tiempo Reparación</h3>
+<p id="tiempo_reparacion"></p>
 </div>
 
 </div>
 
-<h2>Indicadores Operacionales</h2>
+<h2>Indicadores Mensuales</h2>
 
-<div class="kpi-container">
+<div class="graficos">
 
-<div class="kpi-card">
-<h3>Puntualidad de Servicio</h3>
-<p id="puntualidad">-</p>
-</div>
-
-<div class="kpi-card">
-<h3>Índice de Fallas</h3>
-<p id="fallasPromedio">-</p>
-</div>
-
-<div class="kpi-card">
-<h3>Tiempo Promedio Reparación</h3>
-<p id="tiempoReparacion">-</p>
-</div>
-
-</div>
-
-
-<div class="charts">
-
-<div class="chart-box">
-<h2>Fallas por Mes</h2>
-<canvas id="fallasChart"></canvas>
-</div>
-
-<div class="chart-box">
-<h2>Estado de Flota</h2>
-<canvas id="flotaChart"></canvas>
-</div>
-
-</div>
-
-
-<div class="charts">
-
-<div class="chart-box">
-<h2>Cumplimiento Mensual</h2>
-<canvas id="cumplimientoChart"></canvas>
-</div>
-
-<div class="chart-box">
-<h2>Disponibilidad Histórica</h2>
-<canvas id="disponibilidadChart"></canvas>
-</div>
+<canvas id="graficoDisponibilidad"></canvas>
+<canvas id="graficoCumplimiento"></canvas>
+<canvas id="graficoFallas"></canvas>
 
 </div>
 
@@ -132,7 +106,7 @@
 <tr>
 <th>Patente</th>
 <th>Documento</th>
-<th>Fecha vencimiento</th>
+<th>Fecha</th>
 <th>Estado</th>
 </tr>
 </thead>
@@ -141,179 +115,7 @@
 
 </table>
 
-<script>
-
-async function cargarDatos(){
-
-const response = await fetch("data/data.json");
-const data = await response.json();
-
-const disp = data.kpis.disponibilidad;
-const dispElement = document.getElementById("disponibilidad");
-
-dispElement.textContent = disp + "%";
-
-if(disp >= 90){
-dispElement.style.color = "green";
-}else if(disp >= 85){
-dispElement.style.color = "orange";
-}else{
-dispElement.style.color = "red";
-}
-const comp = data.kpis.cumplimiento;
-const compElement = document.getElementById("cumplimiento");
-
-compElement.textContent = comp + "%";
-
-if(comp >= 95){
-compElement.style.color = "green";
-}else if(comp >= 90){
-compElement.style.color = "orange";
-}else{
-compElement.style.color = "red";
-}
-
-const rev = data.kpis.revision;
-const revElement = document.getElementById("revision");
-revElement.textContent = rev + "%";
-
-if(rev >= 95){
-revElement.style.color = "green";
-}else if(comp >= 90){
-revElement.style.color = "orange";
-}else{
-revElement.style.color = "red";
-}
-
-
-document.getElementById("flotaTotal").textContent = data.flota.total;
-document.getElementById("flotaOperativa").textContent = data.flota.operativos;
-document.getElementById("flotaMantencion").textContent = data.flota.mantencion;
-document.getElementById("flotaFuera").textContent = data.flota.fuera_servicio;
-
-
-document.getElementById("puntualidad").textContent = data.operacion.puntualidad + "%";
-document.getElementById("fallasPromedio").textContent = data.operacion.fallas_promedio;
-document.getElementById("tiempoReparacion").textContent = data.operacion.tiempo_reparacion + " h";
-
-const ctx = document.getElementById("fallasChart");
-
-new Chart(ctx,{
-type:"bar",
-data:{
-labels:data.meses,
-datasets:[{
-label:"Fallas",
-data:data.fallas
-}]
-}
-});
-
-
-const flotaCtx = document.getElementById("flotaChart");
-
-new Chart(flotaCtx,{
-type:"pie",
-data:{
-labels:["Operativos","Mantención","Fuera de servicio"],
-datasets:[{
-data:[
-data.flota.operativos,
-data.flota.mantencion,
-data.flota.fuera_servicio
-]
-}]
-}
-});
-
-const cumplimientoCtx = document.getElementById("cumplimientoChart");
-
-new Chart(cumplimientoCtx,{
-type:"line",
-data:{
-labels:data.meses,
-datasets:[{
-label:"Cumplimiento %",
-data:data.cumplimiento_mensual
-}]
-}
-});
-
-
-const disponibilidadCtx = document.getElementById("disponibilidadChart");
-
-new Chart(disponibilidadCtx,{
-type:"line",
-data:{
-labels:data.meses,
-datasets:[{
-label:"Disponibilidad %",
-data:data.disponibilidad_mensual
-}]
-}
-});
-
-}
-
-cargarDatos();
-
-
-async function cargarAlertas(){
-
-const response = await fetch("data/buses.json");
-const data = await response.json();
-
-const tabla = document.querySelector("#alertasTabla tbody");
-
-const hoy = new Date();
-
-data.buses.forEach(bus => {
-
-const documentos = [
-{nombre:"Revisión Técnica",fecha:bus.revision_tecnica},
-{nombre:"Permiso Circulación",fecha:bus.permiso_circulacion},
-{nombre:"Certificación Minera",fecha:bus.certificacion_minera}
-];
-
-documentos.forEach(doc => {
-
-const fecha = new Date(doc.fecha);
-
-const diff = (fecha - hoy) / (1000*60*60*24);
-
-let estado = "";
-let clase = "";
-
-if(diff < 0){
-estado = "Vencido";
-clase = "estado-vencido";
-}
-else if(diff <= 30){
-estado = "Vence pronto";
-clase = "estado-alerta";
-}
-else{
-return;
-}
-
-tabla.innerHTML += `
-<tr>
-<td>${bus.patente}</td>
-<td>${doc.nombre}</td>
-<td>${doc.fecha}</td>
-<td class="${clase}">${estado}</td>
-</tr>
-`;
-
-});
-
-});
-
-}
-
-cargarAlertas();
-
-</script>
+<script src="dashboard.js"></script>
 
 </body>
 </html>
