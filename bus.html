@@ -1,15 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
 <meta charset="UTF-8">
-<title>Ficha Bus</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ficha del Bus</title>
 <link rel="stylesheet" href="style.css">
-
 </head>
-
 <body>
 
 <nav class="menu">
@@ -17,71 +13,181 @@
 <a href="buses.html">Flota</a>
 </nav>
 
-<h1>Ficha del Bus</h1>
+<section class="hero-ficha">
+<div>
+<p class="hero-label">Gestión de Flota</p>
+<h1>Ficha Técnica del Bus</h1>
+<p class="hero-texto">Consulta la información operativa, técnica y documental de cada unidad.</p>
+</div>
+
+<div class="acciones-ficha">
+<button onclick="window.history.back()">Volver</button>
+<button class="btn-secundario" onclick="descargarPDF()">Descargar PDF</button>
+</div>
+</section>
 
 <div id="busInfo"></div>
 
 <script>
-
-async function cargarBus(){
-
-const params = new URLSearchParams(window.location.search)
-const patente = params.get("patente")
-
-const response = await fetch("data/buses.json")
-const data = await response.json()
-
-const bus = data.buses.find(b => b.patente === patente)
-
-document.getElementById("busInfo").innerHTML = `
-
-<div class="card">
-
-<h2>${bus.patente}</h2>
-
-<div class="bus-grid">
-
-<div>
-
-<h3>Información del Bus</h3>
-
-Número Bus: ${bus.numero_bus} <br>
-Marca: ${bus.marca} <br>
-Modelo: ${bus.modelo} <br>
-Año: ${bus.anio} <br>
-Asientos: ${bus.asientos} <br>
-Propietario: ${bus.propietario}
-
-</div>
-
-<div>
-
-<h3>Datos Técnicos</h3>
-
-Motor: ${bus.motor} <br>
-Chasis: ${bus.chasis}
-
-</div>
-
-</div>
-
-<br>
-
-<h3>Documentación</h3>
-
-Revisión Técnica: ${bus.revision_tecnica} <br>
-Permiso Circulación: ${bus.permiso_circulacion} <br>
-Seguro: ${bus.seguro} <br>
-Cartola: ${bus.cartola}
-
-</div>
-
-`
-
+function formatearFecha(fechaTexto){
+  if(!fechaTexto) return "-";
+  const fecha = new Date(fechaTexto + "T00:00:00");
+  if(isNaN(fecha)) return fechaTexto;
+  const dia = String(fecha.getDate()).padStart(2, "0");
+  const mes = String(fecha.getMonth() + 1).padStart(2, "0");
+  const anio = fecha.getFullYear();
+  return `${dia}-${mes}-${anio}`;
 }
 
-cargarBus()
+function descargarPDF(){
+  window.print();
+}
 
+function obtenerClaseEstado(estado){
+  if(!estado) return "estado-operativo";
+  const valor = estado.toLowerCase();
+  if(valor.includes("mant")) return "estado-mantencion";
+  if(valor.includes("fuera")) return "estado-fuera";
+  return "estado-operativo";
+}
+
+function estadoDocumento(fechaTexto){
+  if(!fechaTexto) return { texto: "-", clase: "doc-normal" };
+
+  const hoy = new Date();
+  hoy.setHours(0,0,0,0);
+
+  const fecha = new Date(fechaTexto + "T00:00:00");
+  const diff = (fecha - hoy) / (1000 * 60 * 60 * 24);
+
+  if(diff < 0) return { texto: "Vencido", clase: "doc-vencido" };
+  if(diff <= 30) return { texto: "Vence pronto", clase: "doc-alerta" };
+  return { texto: "Vigente", clase: "doc-ok" };
+}
+
+function botonDocumento(doc){
+  if(doc && doc.archivo){
+    const nombreDescarga = doc.nombre_archivo || "documento.pdf";
+    return `<a class="btn-descargar-doc" href="${doc.archivo}" download="${nombreDescarga}" target="_blank">Descargar</a>`;
+  }
+
+  return `<span class="btn-doc-inactivo">No disponible</span>`;
+}
+
+function filaDocumento(nombre, doc){
+  const fecha = formatearFecha(doc?.fecha);
+  const estado = estadoDocumento(doc?.fecha);
+
+  return `
+    <div class="fila-info fila-documento fila-documento-grid">
+      <span class="etiqueta">${nombre}</span>
+      <span>${fecha}</span>
+      <span class="doc-badge ${estado.clase}">${estado.texto}</span>
+      <span class="documento-accion">${botonDocumento(doc)}</span>
+    </div>
+  `;
+}
+
+async function cargarBus(){
+  const params = new URLSearchParams(window.location.search);
+  const patente = params.get("patente");
+  const contenedor = document.getElementById("busInfo");
+
+  if(!patente){
+    contenedor.innerHTML = `<div class="card"><h2>No se indicó una patente válida.</h2></div>`;
+    return;
+  }
+
+  try{
+    const response = await fetch("data/buses.json");
+    const data = await response.json();
+    const bus = data.buses.find(b => b.patente === patente);
+
+    if(!bus){
+      contenedor.innerHTML = `<div class="card"><h2>No se encontró información para la patente ${patente}.</h2></div>`;
+      return;
+    }
+
+    const estadoTexto = bus.estado || "Operativo";
+    const estadoClase = obtenerClaseEstado(estadoTexto);
+
+    const documentos = bus.documentos || {};
+
+    contenedor.innerHTML = `
+      <div class="card card-ficha">
+        <div class="cabecera-bus">
+          <div>
+            <h2 class="titulo-bus">${bus.patente}</h2>
+            <p class="subtitulo-bus">${bus.marca ?? "-"} ${bus.modelo ?? "-"} · Año ${bus.anio ?? "-"}</p>
+          </div>
+          <div class="badge-estado ${estadoClase}">${estadoTexto}</div>
+        </div>
+
+        <div class="resumen-bus">
+          <div class="mini-kpi"><span>N° Bus</span><strong>${bus.numero_bus ?? "-"}</strong></div>
+          <div class="mini-kpi"><span>Asientos</span><strong>${bus.asientos ?? "-"}</strong></div>
+          <div class="mini-kpi"><span>Kilometraje</span><strong>${bus.kilometraje ? bus.kilometraje + " km" : "-"}</strong></div>
+          <div class="mini-kpi"><span>Empresa</span><strong>${bus.empresa ?? "-"}</strong></div>
+        </div>
+
+        <div class="bus-grid">
+          <div class="bloque-info">
+            <h3>Información General</h3>
+            <div class="fila-info"><span class="etiqueta">Patente</span><span>${bus.patente ?? "-"}</span></div>
+            <div class="fila-info"><span class="etiqueta">Marca</span><span>${bus.marca ?? "-"}</span></div>
+            <div class="fila-info"><span class="etiqueta">Modelo</span><span>${bus.modelo ?? "-"}</span></div>
+            <div class="fila-info"><span class="etiqueta">Año</span><span>${bus.anio ?? "-"}</span></div>
+            <div class="fila-info"><span class="etiqueta">Propietario</span><span>${bus.propietario ?? "-"}</span></div>
+            <div class="fila-info"><span class="etiqueta">Estado</span><span>${bus.estado ?? "-"}</span></div>
+          </div>
+
+          <div class="bloque-info">
+            <h3>Datos Técnicos</h3>
+            <div class="fila-info"><span class="etiqueta">Motor</span><span>${bus.motor ?? "-"}</span></div>
+            <div class="fila-info"><span class="etiqueta">Chasis</span><span>${bus.chasis ?? "-"}</span></div>
+            <div class="fila-info"><span class="etiqueta">Asientos</span><span>${bus.asientos ?? "-"}</span></div>
+            <div class="fila-info"><span class="etiqueta">Kilometraje</span><span>${bus.kilometraje ? bus.kilometraje + " km" : "-"}</span></div>
+          </div>
+
+          <div class="bloque-info">
+            <h3>Operación</h3>
+            <div class="fila-info"><span class="etiqueta">Empresa asignada</span><span>${bus.empresa ?? "-"}</span></div>
+            <div class="fila-info"><span class="etiqueta">Última mantención</span><span>${formatearFecha(bus.ultima_mantencion)}</span></div>
+            <div class="fila-info"><span class="etiqueta">Último cambio aceite</span><span>${formatearFecha(bus.ultimo_cambio_aceite)}</span></div>
+          </div>
+
+          <div class="bloque-info">
+            <h3>Observación</h3>
+            <div class="observacion-box">
+              Unidad registrada para control técnico, documental y operacional dentro del sistema de gestión de flota.
+            </div>
+          </div>
+        </div>
+
+        <div class="bloque-info bloque-documentos">
+          <h3>Documentación y Certificaciones</h3>
+          <div class="documentos-header">
+            <span>Documento</span>
+            <span>Fecha</span>
+            <span>Estado</span>
+            <span>Archivo</span>
+          </div>
+
+          ${filaDocumento("Revisión Técnica", documentos.revision_tecnica)}
+          ${filaDocumento("Permiso Circulación", documentos.permiso_circulacion)}
+          ${filaDocumento("Seguro", documentos.seguro)}
+          ${filaDocumento("Cartola", documentos.cartola)}
+          ${filaDocumento("Certificación Minera", documentos.certificacion_minera)}
+        </div>
+      </div>
+    `;
+  }catch(error){
+    contenedor.innerHTML = `<div class="card"><h2>Error al cargar la ficha del bus.</h2></div>`;
+    console.error(error);
+  }
+}
+
+cargarBus();
 </script>
 
 </body>

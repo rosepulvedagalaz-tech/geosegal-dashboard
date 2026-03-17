@@ -1,15 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
 <meta charset="UTF-8">
-<title>Flota</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flota de Buses</title>
 <link rel="stylesheet" href="style.css">
-
 </head>
-
 <body>
 
 <nav class="menu">
@@ -17,34 +13,59 @@
 <a href="buses.html">Flota</a>
 </nav>
 
+<section class="hero-ficha">
+<div>
+<p class="hero-label">Gestión de Flota</p>
 <h1>Flota de Buses</h1>
+<p class="hero-texto">Busca una unidad por patente o revisa el listado general de buses registrados en el sistema.</p>
+</div>
+</section>
 
-<h2>Buscar por patente</h2>
+<div class="card card-buscador">
 
-<input type="text" id="buscador" placeholder="Ingresar patente">
+<h2>Buscar bus por patente</h2>
+
+<div class="buscador-box">
+<input type="text" id="buscador" placeholder="Ejemplo: BVBB29" onkeyup="filtrarBuses()">
 <button onclick="buscarBus()">Buscar</button>
+</div>
 
-<div id="resultado"></div>
+<p id="resultado" class="mensaje-resultado"></p>
 
+</div>
+
+<div class="card">
+
+<div class="tabla-header">
+<div>
 <h2>Listado de buses</h2>
+<p class="tabla-subtitulo">Selecciona una patente para abrir la ficha técnica del vehículo.</p>
+</div>
+
+<div class="contador-buses">
+Total: <strong id="contadorBuses">0</strong>
+</div>
+</div>
 
 <table id="tablaBuses">
 
 <thead>
-
 <tr>
+<th>N° Bus</th>
 <th>Patente</th>
 <th>Marca</th>
 <th>Modelo</th>
 <th>Año</th>
-<th>Ver</th>
+<th>Estado</th>
+<th>Acción</th>
 </tr>
-
 </thead>
 
 <tbody></tbody>
 
 </table>
+
+</div>
 
 <script src="buses.js"></script>
 

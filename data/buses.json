@@ -1,100 +1,95 @@
-{
- "buses":[
+
 
 {
-"numero_bus":104,
-"patente":"BVBB29",
-"marca":"Mercedes",
-"modelo":"Marcopolo",
-"anio":2018,
-"asientos":44,
+  "buses": [
+    {
+      "numero_bus": "01",
+      "patente": "BVBB29",
+      "marca": "Mercedes-Benz",
+      "modelo": "Sprinter 519",
+      "anio": 2022,
+      "estado": "Operativo",
+      "empresa": "Minera Norte",
+      "asientos": 19,
+      "kilometraje": 125000,
+      "propietario": "Transportes Demo SpA",
+      "motor": "2.1 CDI",
+      "chasis": "Mercedes-Benz",
+      "ultima_mantencion": "2026-02-10",
+      "ultimo_cambio_aceite": "2026-01-20",
 
-"motor":"457916U0906426",
-"chasis":"9BM6340118B574014",
+      "documentos": {
+        "revision_tecnica": {
+          "fecha": "2025-04-15",
+          "archivo": "docs/BVBB29/revision_tecnica.pdf",
+          "nombre_archivo": "Revision Tecnica BVBB29.pdf"
+        },
+        "permiso_circulacion": {
+          "fecha": "2026-03-20",
+          "archivo": "docs/BVBB29/permiso_circulacion.pdf",
+          "nombre_archivo": "Permiso Circulacion BVBB29.pdf"
+        },
+        "seguro": {
+          "fecha": "2026-02-10",
+          "archivo": "docs/BVBB29/seguro.pdf",
+          "nombre_archivo": "Seguro BVBB29.pdf"
+        },
+        "cartola": {
+          "fecha": "2025-05-20",
+          "archivo": "docs/BVBB29/cartola.pdf",
+          "nombre_archivo": "Cartola BVBB29.pdf"
+        },
+        "certificacion_minera": {
+          "fecha": "2026-03-20",
+          "archivo": "docs/BVBB29/certificacion_minera.pdf",
+          "nombre_archivo": "Certificacion Minera BVBB29.pdf"
+        }
+      }
+    },
 
-"revision_tecnica":"2026-10-10",
-"permiso_circulacion":"2026-03-31",
-"seguro":"2027-12-01",
-"cartola":"2025-08-20",
+    {
+      "numero_bus": "02",
+      "patente": "VGFH41",
+      "marca": "Yutong",
+      "modelo": "ZK6138H",
+      "anio": 2026,
+      "estado": "Operativo",
+      "empresa": "Faena Sur",
+      "asientos": 44,
+      "kilometraje": 168500,
+      "propietario": "Empresa Transportes Don Hugo Ltda",
+      "motor": "2.0 TDI",
+      "chasis": "7282919811910",
+      "ultima_mantencion": "2026-03-01",
+      "ultimo_cambio_aceite": "2026-02-12",
 
-"propietario":"Empresa Transportes"
-},
-
-{
-"numero_bus":106,
-"patente":"FGGZ36",
-"marca":"Mercedes",
-"modelo":"Irizar",
-"anio":2019,
-"asientos":44,
-
-"motor":"924919U0996918",
-"chasis":"9BM384078CB852606",
-
-"revision_tecnica":"2026-04-10",
-"permiso_circulacion":"2026-03-31",
-"seguro":"2026-09-15",
-"cartola":"2026-07-10",
-
-"propietario":"Empresa Transportes"
-},
-
-{
-"numero_bus":107,
-"patente":"FFZX18",
-"marca":"Mercedes",
-"modelo":"Irizar",
-"anio":2020,
-"asientos":46,
-
-"motor":"924919U0996067",
-"chasis":"9BM384078CB851870",
-
-"revision_tecnica":"2026-04-01",
-"permiso_circulacion":"2026-03-31",
-"seguro":"2026-05-20",
-"cartola":"2026-04-10",
-
-"propietario":"Empresa Transportes"
-},
-
-{
-"numero_bus":108,
-"patente":"FXZY13",
-"marca":"Scania",
-"modelo":"Comil",
-"anio":2017,
-"asientos":42,
-
-"motor":"8217198",
-"chasis":"9BSK6X200D3831495",
-
-"revision_tecnica":"2026-02-01",
-"permiso_circulacion":"2026-03-31",
-"seguro":"2025-06-15",
-"cartola":"2025-03-05",
-
-"propietario":"Empresa Transportes"
-},
-
-{
-"numero_bus":116,
-"patente":"BZXT22",
-"marca":"Mercedes",
-"modelo":"Marcopolo",
-"anio":2016,
-"asientos":45,
-
-"motor":"926926U0784147",
-"chasis":"9BM3821769B604065",
-
-"revision_tecnica":"2026-11-15",
-"permiso_circulacion":"2026-03-31",
-"seguro":"2026-08-01",
-"cartola":"2026-04-10",
-
-"propietario":"Empresa Transportes"
-}
-
- ]
+      "documentos": {
+        "revision_tecnica": {
+          "fecha": "2026-07-22",
+          "archivo": "docs/VGFH41/REVISION_TECNICA.pdf",
+          "nombre_archivo": "Revision Tecnica VGFH41.pdf"
+        },
+        "permiso_circulacion": {
+          "fecha": "2026-05-31",
+          "archivo": "docs/VGFH41/PERMISO_CIRCULACION.pdf",
+          "nombre_archivo": "Permiso Circulacion VGFH41.pdf"
+        },
+        "seguro": {
+          "fecha": "2026-05-20",
+          "archivo": "docs/VGFH41/SOAP.pdf",
+          "nombre_archivo": "Seguro VGFH41.pdf"
+        },
+        "cartola": {
+          "fecha": "2026-03-07",
+          "archivo": "docs/VGFH41/cartola.pdf",
+          "nombre_archivo": "CARTOLA.pdf"
+        },
+        "certificacion_minera": {
+          "fecha": "2026-06-10",
+          "archivo": "docs/VGFH41/certificacion_minera.pdf",
+          "nombre_archivo": "Certificacion Minera VGFH41.pdf"
+        }
+      }
+    }
+  ]
 }
